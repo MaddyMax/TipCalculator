@@ -1,0 +1,20 @@
+def calculateTips():
+
+    employees = {"maddy": 23, "anton": 39, "kennedy": 40, "stormi": 38}
+
+    totalTips = input("Enter the total amount of tips: ")
+
+    totalHoursWorked = 0
+
+    for hours in employees.values():
+        totalHoursWorked += hours
+
+    print("The total hours worked is " + str(totalHoursWorked))
+    tipsPerHour = int(totalTips) / totalHoursWorked
+
+    for employee, hours in employees.items():
+        tipsPerPerson = hours * tipsPerHour
+        print(employee + " : " + "%.2f" % tipsPerPerson)
+
+
+calculateTips()
