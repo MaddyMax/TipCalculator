@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def calculateTips():
 
     employees = {"maddy": 23, "anton": 39, "kennedy": 40, "stormi": 38}
