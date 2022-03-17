@@ -1,22 +1,38 @@
 #!/usr/bin/python3
+import sys
+
+inFile = sys.argv[1]
+outFile = sys.argv[2]
+processedLines = {}
+
+def fixFile(inFile):
+    
+    with open(inFile, 'r') as i:
+        for line in i:
+            (key, value) = line.split()
+            processesdLines[key] = int(value)
+            
+    with open(outFile, 'w+') as o:
+        for key, value in processedLines.items():
+            o.write(key, value)
+            
+    return processedLines        
 
 def calculateTips():
-
-    employees = {"maddy": 23, "anton": 39, "kennedy": 40, "stormi": 38}
 
     totalTips = input("Enter the total amount of tips: ")
 
     totalHoursWorked = 0
 
-    for hours in employees.values():
+    for hours in processedLines.values():
         totalHoursWorked += hours
 
     print("The total hours worked is " + str(totalHoursWorked))
     tipsPerHour = int(totalTips) / totalHoursWorked
 
-    for employee, hours in employees.items():
+    for employee, hours in processedLines.items():
         tipsPerPerson = hours * tipsPerHour
         print(employee + " : " + "%.2f" % tipsPerPerson)
 
-
+fixFile(inFile)
 calculateTips()
