@@ -10,7 +10,7 @@ def fixFile(inFile):
     with open(inFile, 'r') as i:
         for line in i:
             (key, value) = line.split()
-            processesdLines[key] = int(value)
+            processedLines[key] = int(value)
             
     with open(outFile, 'w+') as o:
         for key, value in processedLines.items():
