@@ -12,9 +12,9 @@ def fixFile(inFile):
             (key, value) = line.split()
             processedLines[key] = int(value)
             
-    with open(outFile, 'w+') as o:
+    """with open(outFile, 'w+') as o:
         for key, value in processedLines.items():
-            o.write(key, value)
+            o.write(key, value)"""
             
     return processedLines        
 
@@ -33,6 +33,9 @@ def calculateTips():
     for employee, hours in processedLines.items():
         tipsPerPerson = hours * tipsPerHour
         print(employee + " : " + "%.2f" % tipsPerPerson)
+        with open(outFile, 'w+') as o:
+            o.write(employee + " : " + "%.2f" % tipsPerPerson)
+
 
 fixFile(inFile)
 calculateTips()
