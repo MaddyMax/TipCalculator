@@ -12,10 +12,6 @@ def fixFile(inFile):
             (key, value) = line.split()
             processedLines[key] = int(value)
             
-    """with open(outFile, 'w+') as o:
-        for key, value in processedLines.items():
-            o.write(key, value)"""
-            
     return processedLines        
 
 def calculateTips():
@@ -27,14 +23,15 @@ def calculateTips():
     for hours in processedLines.values():
         totalHoursWorked += hours
 
-    print("The total hours worked is " + str(totalHoursWorked))
     tipsPerHour = int(totalTips) / totalHoursWorked
 
     for employee, hours in processedLines.items():
         tipsPerPerson = hours * tipsPerHour
-        print(employee + " : " + "%.2f" % tipsPerPerson)
         with open(outFile, 'w+') as o:
-            o.write(employee + " : " + "%.2f" % tipsPerPerson)
+            o.write("The total hours worked is " + str(totalHoursWorked))
+
+    for employee, hours in processedLines.items():    
+        o.write(employee + " : " + "%.2f" % tipsPerPerson)
 
 
 fixFile(inFile)
