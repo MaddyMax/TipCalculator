@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-import sys
 
-inFile = sys.argv[1]
-outFile = sys.argv[2]
+inFile = '/Users/madisonkille/tipDoc.txt'
+outFile = '/Users/madisonkille/Desktop/outTips.txt'
 
 processedLines = {}
 
