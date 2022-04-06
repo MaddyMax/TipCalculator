@@ -1,14 +1,15 @@
 #!/usr/bin/python3
+import os
 
 inFile = '/Users/madisonkille/tipDoc.txt'
-outFile = '/Users/madisonkille/Desktop/outTips.txt'
+outFile = f'/Users/{os.getlogin()}/Desktop/Tips.txt'
 
 processedLines = {}
 
-def fixFile(inFile):
+def fixFile():
     
-    with open(inFile, 'r') as i:
-        for line in i:
+    with open(inFile, 'r') as inputFile:
+        for line in inputFile:
             (key, value) = line.split()
             processedLines[key] = int(value)
             
@@ -25,13 +26,13 @@ def calculateTips():
 
     tipsPerHour = int(totalTips) / totalHoursWorked
 
-    with open(outFile, 'w+') as o:
-        o.write("The total hours worked is " + str(totalHoursWorked) + "\n")
+    with open(outFile, 'w+') as outputFile:
+        outputFile.write("The total hours worked is " + str(totalHoursWorked) + "\n")
         for employee, hours in processedLines.items():
             tipsPerPerson = hours * tipsPerHour
-            o.write(employee + " : " + "%.2f" % tipsPerPerson + "\n")
+            outputFile.write(employee + " : " + "%.2f" % tipsPerPerson + "\n")
             
 
 
-fixFile(inFile)
+fixFile()
 calculateTips()
