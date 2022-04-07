@@ -1,8 +1,10 @@
-#!/usr/bin/python3
-import os
+#!/usr/bin/env python3
 
-inFile = '/Users/madisonkille/tipDoc.txt'
-outFile = f'/Users/{os.getlogin()}/Desktop/Tips.txt'
+import os
+import easygui
+
+inFile = easygui.fileopenbox()
+outFile = f'/Users/{os.getlogin()}/Desktop/tips.txt'
 
 processedLines = {}
 
@@ -11,26 +13,26 @@ def fixFile():
     with open(inFile, 'r') as inputFile:
         for line in inputFile:
             (key, value) = line.split()
-            processedLines[key] = int(value)
+            processedLines[key] = float(value)
             
     return processedLines        
 
 def calculateTips():
 
     totalTips = input("Enter the total amount of tips: ")
-
+    
     totalHoursWorked = 0
 
     for hours in processedLines.values():
         totalHoursWorked += hours
 
-    tipsPerHour = int(totalTips) / totalHoursWorked
+    tipsPerHour = float(totalTips) / totalHoursWorked
 
     with open(outFile, 'w+') as outputFile:
-        outputFile.write("The total hours worked is " + str(totalHoursWorked) + "\n")
+        outputFile.write("The tips per hour are " + "%.2f" % tipsPerHour + "\n")
         for employee, hours in processedLines.items():
             tipsPerPerson = hours * tipsPerHour
-            outputFile.write(employee + " : " + "%.2f" % tipsPerPerson + "\n")
+            outputFile.write(employee + ": " + "%.2f" % tipsPerPerson + "\n")
             
 
 
